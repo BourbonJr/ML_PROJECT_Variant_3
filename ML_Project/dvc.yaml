@@ -1,0 +1,161 @@
+stages:
+  prepare_data:
+    cmd: python src/make_dataset.py --config params.yaml
+    deps:
+      - src/make_dataset.py
+      - data/raw/test_scores.csv
+      - params.yaml
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train_decision_tree:
+    cmd: python src/models/Decision_tree/decision_tree_learn.py --config params.yaml
+    deps:
+      - src/models/Decision_tree/decision_tree_learn.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/decision_tree_model.pkl
+
+  evaluate_decision_tree:
+    cmd: python src/models/Decision_tree/decision_tree_validate.py --config params.yaml
+    deps:
+      - src/models/Decision_tree/decision_tree_validate.py
+      - data/processed/test.csv
+      - models/decision_tree_model.pkl
+      - params.yaml
+    metrics:
+      - metrics_decision_tree.json
+
+  final_evaluate_decision_tree:
+    cmd: python src/models/Decision_tree/decision_tree_full.py --config params.yaml
+    deps:
+      - src/models/Decision_tree/decision_tree_full.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - models/decision_tree_model.pkl
+      - params.yaml
+    metrics:
+      - metrics/metrics_decision_tree_fullset.json
+
+  train_linear_regression:
+    cmd: python src/models/Linear_regression/linear_regression_learn.py --config params.yaml
+    deps:
+      - src/models/Linear_regression/linear_regression_learn.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/linear_regression_model.pkl
+
+  evaluate_linear_regression:
+    cmd: python src/models/Linear_regression/linear_regression_validate.py --config params.yaml
+    deps:
+      - src/models/Linear_regression/linear_regression_validate.py
+      - data/processed/test.csv
+      - models/linear_regression_model.pkl
+      - params.yaml
+    metrics:
+      - metrics/metrics_linear_regression.json
+  final_evaluate_linear_regression:
+    cmd: python src/models/Linear_regression/linear_regression_full.py --config params.yaml
+    deps:
+      - src/models/Linear_regression/linear_regression_full.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - models/linear_regression_model.pkl
+      - params.yaml
+    metrics:
+      - metrics/metrics_linear_regression_fullset.json
+
+  train_xgboost:
+    cmd: python src/models/Xgboost/xgboost_learn.py --config params.yaml
+    deps:
+      - src/models/Xgboost/xgboost_learn.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/xgboost_model.pkl
+
+  evaluate_xgboost:
+    cmd: python src/models/Xgboost/xgboost_validate.py --config params.yaml
+    deps:
+      - src/models/Xgboost/xgboost_validate.py
+      - data/processed/test.csv
+      - models/xgboost_model.pkl
+      - params.yaml
+  
+    metrics:
+      - metrics_xgboost.json
+
+  final_evaluate_xgboost:
+    cmd: python src/models/Xgboost/xgboost_full.py --config params.yaml
+    deps:
+      - src/models/Xgboost/xgboost_full.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - models/xgboost_model.pkl
+      - params.yaml
+    metrics:
+      - metrics/metrics_xgboost_fullset.json
+
+  train_catboost:
+    cmd: python src/models/Catboost/catboost_learn.py --config params.yaml
+    deps:
+      - src/models/Catboost/catboost_learn.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/catboost_model.pkl
+
+  evaluate_catboost:
+    cmd: python src/models/Catboost/catboost_validate.py --config params.yaml
+    deps:
+      - src/models/Catboost/catboost_validate.py
+      - data/processed/test.csv
+      - models/catboost_model.pkl
+      - params.yaml
+    metrics:
+      - metrics_catboost.json
+
+  final_evaluate_catboost:
+    cmd: python src/models/Catboost/catboost_full.py --config params.yaml
+    deps:
+      - src/models/Catboost/catboost_full.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - models/catboost_model.pkl
+      - params.yaml
+    metrics:
+      - metrics/metrics_catboost_fullset.json
+
+  neural_network_train:
+    cmd: python src/models/Neural_network/neural_network_learn.py --config params.yaml
+    deps:
+      - src/models/Neural_network/neural_network_learn.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/neural_network_model.pkl
+
+  neural_network_evaluate:
+    cmd: python src/models/Neural_network/neural_network_validate.py --config params.yaml
+    deps:
+      - src/models/Neural_network/neural_network_validate.py
+      - data/processed/test.csv
+      - models/neural_network_model.pkl
+      - params.yaml
+    outs:
+      - metrics_neural_network.json
+
+
+  final_neural_network_evaluate:
+    cmd: python src/models/Neural_network/neural_network_full.py --config params.yaml
+    deps:
+      - src/models/Neural_network/neural_network_full.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - models/neural_network_model.pkl
+      - params.yaml
+    outs:
+      - metrics/metrics_neural_network_fullset.json

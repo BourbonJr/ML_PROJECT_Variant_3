@@ -1,0 +1,46 @@
+strict digraph {
+"..\dvc.yaml:prepare_data";
+"..\dvc.yaml:train_decision_tree";
+"..\dvc.yaml:evaluate_decision_tree";
+"..\dvc.yaml:final_evaluate_decision_tree";
+"..\dvc.yaml:train_linear_regression";
+"..\dvc.yaml:evaluate_linear_regression";
+"..\dvc.yaml:final_evaluate_linear_regression";
+"..\dvc.yaml:train_xgboost";
+"..\dvc.yaml:evaluate_xgboost";
+"..\dvc.yaml:final_evaluate_xgboost";
+"..\dvc.yaml:train_catboost";
+"..\dvc.yaml:evaluate_catboost";
+"..\dvc.yaml:final_evaluate_catboost";
+"..\dvc.yaml:neural_network_train";
+"..\dvc.yaml:neural_network_evaluate";
+"..\dvc.yaml:final_neural_network_evaluate";
+"..\data\raw\test_scores.csv.dvc";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:train_decision_tree";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:evaluate_decision_tree";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:final_evaluate_decision_tree";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:train_linear_regression";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:evaluate_linear_regression";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:final_evaluate_linear_regression";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:train_xgboost";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:evaluate_xgboost";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:final_evaluate_xgboost";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:train_catboost";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:evaluate_catboost";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:final_evaluate_catboost";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:neural_network_train";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:neural_network_evaluate";
+"..\dvc.yaml:prepare_data" -> "..\dvc.yaml:final_neural_network_evaluate";
+"..\dvc.yaml:train_decision_tree" -> "..\dvc.yaml:evaluate_decision_tree";
+"..\dvc.yaml:train_decision_tree" -> "..\dvc.yaml:final_evaluate_decision_tree";
+"..\dvc.yaml:train_linear_regression" -> "..\dvc.yaml:evaluate_linear_regression";
+"..\dvc.yaml:train_linear_regression" -> "..\dvc.yaml:final_evaluate_linear_regression";
+"..\dvc.yaml:train_xgboost" -> "..\dvc.yaml:evaluate_xgboost";
+"..\dvc.yaml:train_xgboost" -> "..\dvc.yaml:final_evaluate_xgboost";
+"..\dvc.yaml:train_catboost" -> "..\dvc.yaml:evaluate_catboost";
+"..\dvc.yaml:train_catboost" -> "..\dvc.yaml:final_evaluate_catboost";
+"..\dvc.yaml:neural_network_train" -> "..\dvc.yaml:neural_network_evaluate";
+"..\dvc.yaml:neural_network_train" -> "..\dvc.yaml:final_neural_network_evaluate";
+"..\data\raw\test_scores.csv.dvc" -> "..\dvc.yaml:prepare_data";
+}
+
