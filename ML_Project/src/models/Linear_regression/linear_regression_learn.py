@@ -6,7 +6,6 @@ import os
 def train_model(train_path, output_path, model_params):
     df = pd.read_csv(train_path)
 
-    # Используем уже предобработанные данные
     X = df.drop(columns=["posttest"])
     y = df["posttest"]
 
