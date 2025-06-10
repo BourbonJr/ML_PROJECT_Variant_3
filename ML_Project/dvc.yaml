@@ -17,6 +17,8 @@ stages:
       - params.yaml
     outs:
       - models/decision_tree_model.pkl
+    metrics:
+      - metrics_train/metrics_decision_tree_train.json
 
   evaluate_decision_tree:
     cmd: python src/models/Decision_tree/decision_tree_validate.py --config params.yaml
@@ -47,6 +49,8 @@ stages:
       - params.yaml
     outs:
       - models/linear_regression_model.pkl
+    metrics:
+      - metrics_train/metrics_linear_regression_train.json
 
   evaluate_linear_regression:
     cmd: python src/models/Linear_regression/linear_regression_validate.py --config params.yaml
@@ -57,6 +61,7 @@ stages:
       - params.yaml
     metrics:
       - metrics/metrics_linear_regression.json
+
   final_evaluate_linear_regression:
     cmd: python src/models/Linear_regression/linear_regression_full.py --config params.yaml
     deps:
@@ -76,6 +81,9 @@ stages:
       - params.yaml
     outs:
       - models/xgboost_model.pkl
+    metrics:
+      - metrics_train/metrics_xgboost_train.json
+      
 
   evaluate_xgboost:
     cmd: python src/models/Xgboost/xgboost_validate.py --config params.yaml
@@ -107,6 +115,8 @@ stages:
       - params.yaml
     outs:
       - models/catboost_model.pkl
+    metrics:
+      - metrics_train/metrics_catboost_train.json
 
   evaluate_catboost:
     cmd: python src/models/Catboost/catboost_validate.py --config params.yaml
@@ -137,6 +147,8 @@ stages:
       - params.yaml
     outs:
       - models/neural_network_model.pkl
+    metrics:
+      - metrics_train/metrics_neural_network_train.json
 
   neural_network_evaluate:
     cmd: python src/models/Neural_network/neural_network_validate.py --config params.yaml
